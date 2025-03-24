@@ -1,0 +1,78 @@
+name: Maven CI/CD with Trivy and Deployment
+on:
+  push:
+    branches:
+      - master
+  pull_request: null
+jobs:
+  package:
+    name: Maven Package (no tests)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+      - name: Maven Package
+        run: mvn -B clean package -DskipTests
+      - name: Jar Builds
+        uses: actions/upload-artifact@v4.4.2
+        with:
+          name: Jar with Builds
+          path: target/*.jar
+
+  trivy-scan:
+    name: Trivy Scan
+    needs: package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download and Install Trivy
+        run: curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+      - name: Verify Trivy Installation
+        run: trivy --version
+      - name: Trivy Vulnerability Scan
+        run: trivy fs . --exit-code 1 --severity HIGH,CRITICAL
+
+  documentation:
+    name: Generate Documentation
+    needs: package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate KDoc Documentation
+        run: "mvn -B dokka:dokka"
+      - name: Archive KDoc Documentation
+        uses: actions/upload-artifact@v4.4.2
+        with:
+          name: KDoc Documentation Site
+          path: target/dokka
+
+  test:
+    name: Run Maven Tests
+    needs: package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+      - name: Run Tests
+        run: mvn -B clean verify
+
+  deploy:
+    name: Railway Deployment
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Railway CLI
+        run: npm i -g @railway/cli
+      - name: Deploy to Railway
+        run: "railway up --service ${{ secrets.RAILWAY_SERVICE }}"
+        env:
+          RAILWAY_TOKEN: "${{ secrets.RAILWAY_TOKEN }}"

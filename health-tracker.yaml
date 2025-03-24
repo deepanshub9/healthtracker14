@@ -1,0 +1,714 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Health Tracker API
+  description: >-
+    This API provides endpoints for handling CRUD operations on the Health
+    Tracker data.
+  contact:
+    name: Deepanshu
+    email: 20109458@mail.wit.ie
+paths:
+  /api/users:
+    get:
+      summary: Get all users
+      description: Retrieve a list of all users.
+      responses:
+        '200':
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      summary: Add a new user
+      description: Create a new user with the provided details.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User created successfully
+  '/api/users/{user-id}':
+    get:
+      summary: Get a user by ID
+      description: Retrieve the details of a user by their ID.
+      parameters:
+        - name: user-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The ID of the user.
+      responses:
+        '200':
+          description: User details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    delete:
+      summary: Delete a user by ID
+      description: Remove a user by their ID.
+      parameters:
+        - name: user-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The ID of the user.
+      responses:
+        '204':
+          description: User deleted successfully
+    patch:
+      summary: Update a user by ID
+      description: Modify the details of an existing user.
+      parameters:
+        - name: user-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The ID of the user.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: User updated successfully
+  '/api/users/email/{email}':
+    get:
+      summary: Get a user by email
+      description: Retrieve the details of a user by their email.
+      parameters:
+        - name: email
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The email of the user.
+      responses:
+        '200':
+          description: User details by email
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/activities:
+    get:
+      summary: Get all activities
+      description: Retrieve a list of all activities.
+      responses:
+        '200':
+          description: A list of activities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity'
+    post:
+      summary: Add a new activity
+      description: Create a new activity with the provided details.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Activity'
+      responses:
+        '201':
+          description: Activity created successfully
+  '/api/activities/{act-id}':
+    get:
+      summary: Get an activity by ID
+      description: Retrieve the details of an activity by its ID.
+      parameters:
+        - name: act-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The ID of the activity.
+      responses:
+        '200':
+          description: Activity details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Activity'
+    delete:
+      summary: Delete an activity by ID
+      description: Remove an activity by its ID.
+      parameters:
+        - name: act-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The ID of the activity.
+      responses:
+        '204':
+          description: Activity deleted successfully
+    patch:
+      summary: Update an activity by ID
+      description: Modify the details of an existing activity.
+      parameters:
+        - name: act-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The ID of the activity.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Activity'
+      responses:
+        '200':
+          description: Activity updated successfully
+  '/api/activities/{user-id}':
+    get:
+      summary: Get activities by user ID
+      description: Retrieve all activities associated with a specific user ID.
+      parameters:
+        - name: user-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The ID of the user.
+      responses:
+        '200':
+          description: Activities for the user
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Activity'
+
+  /api/Water:
+    get:
+      summary: Get all water intake records
+      description: Retrieve a list of all water intake records.
+      responses:
+        '200':
+          description: A list of water intake records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WaterIntake'
+    post:
+      summary: Add a new water intake record
+      description: Create a new water intake record.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WaterIntake'
+      responses:
+        '201':
+          description: Water intake record created successfully
+
+  /api/Water/{wat-id}:
+    get:
+      summary: Get a water intake record by ID
+      description: Retrieve a specific water intake record by its ID.
+      parameters:
+        - name: wat-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique ID of the water intake record.
+      responses:
+        '200':
+          description: Water intake record details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WaterIntake'
+    delete:
+      summary: Delete a water intake record by ID
+      description: Remove a water intake record by its ID.
+      parameters:
+        - name: wat-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique ID of the water intake record.
+      responses:
+        '204':
+          description: Water intake record deleted successfully
+    patch:
+      summary: Update a water intake record by ID
+      description: Modify an existing water intake record by its ID.
+      parameters:
+        - name: wat-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique ID of the water intake record.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WaterIntake'
+      responses:
+        '200':
+          description: Water intake record updated successfully
+
+  /api/Water/{user-id}:
+    get:
+      summary: Get water intake records by user ID
+      description: Retrieve all water intake records associated with a specific user ID.
+      parameters:
+        - name: user-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique ID of the user.
+      responses:
+        '200':
+          description: Water intake records for the user
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WaterIntake'
+
+
+
+  /api/HealthTips:
+    get:
+      summary: Get all health tips
+      description: Retrieve a list of all health tips.
+      responses:
+        '200':
+          description: A list of health tips
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HealthTip'
+    post:
+      summary: Add a new health tip
+      description: Create a new health tip.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HealthTip'
+      responses:
+        '201':
+          description: Health tip created successfully
+
+  /api/HealthTips/{hth-id}:
+    get:
+      summary: Get a health tip by ID
+      description: Retrieve a specific health tip by its ID.
+      parameters:
+        - name: hth-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique ID of the health tip.
+      responses:
+        '200':
+          description: Health tip details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthTip'
+    delete:
+      summary: Delete a health tip by ID
+      description: Remove a health tip by its ID.
+      parameters:
+        - name: hth-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique ID of the health tip.
+      responses:
+        '204':
+          description: Health tip deleted successfully
+    patch:
+      summary: Update a health tip by ID
+      description: Modify an existing health tip by its ID.
+      parameters:
+        - name: hth-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique ID of the health tip.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HealthTip'
+      responses:
+        '200':
+          description: Health tip updated successfully
+
+  /api/Sleep:
+    get:
+      summary: Get all sleep records
+      description: Retrieve a list of all sleep records.
+      responses:
+        '200':
+          description: A list of sleep records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SleepRecord'
+    post:
+      summary: Add a new sleep record
+      description: Create a new sleep record.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SleepRecord'
+      responses:
+        '201':
+          description: Sleep record created successfully
+
+  /api/Sleep/{slp-id}:
+    get:
+      summary: Get a sleep record by ID
+      description: Retrieve a specific sleep record by its ID.
+      parameters:
+        - name: slp-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique ID of the sleep record.
+      responses:
+        '200':
+          description: Sleep record details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SleepRecord'
+    delete:
+      summary: Delete a sleep record by ID
+      description: Remove a sleep record by its ID.
+      parameters:
+        - name: slp-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique ID of the sleep record.
+      responses:
+        '204':
+          description: Sleep record deleted successfully
+    patch:
+      summary: Update a sleep record by ID
+      description: Modify an existing sleep record by its ID.
+      parameters:
+        - name: slp-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique ID of the sleep record.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SleepRecord'
+      responses:
+        '200':
+          description: Sleep record updated successfully
+
+  /api/Sleep/{user-id}:
+    get:
+      summary: Get sleep records by user ID
+      description: Retrieve all sleep records associated with a specific user ID.
+      parameters:
+        - name: user-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique ID of the user.
+      responses:
+        '200':
+          description: Sleep records for the user
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SleepRecord'
+
+
+  /api/bmi:
+    get:
+      summary: Get all BMI records
+      description: Retrieve a list of all BMI records.
+      responses:
+        '200':
+          description: A list of BMI records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BMI'
+    post:
+      summary: Calculate and save BMI
+      description: Calculate BMI based on provided input and save the result.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BMIRequest'
+      responses:
+        '201':
+          description: BMI calculated and saved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BMI'
+
+  /api/bmi/{bmi-id}:
+    get:
+      summary: Get a BMI record by ID
+      description: Retrieve a specific BMI record by its ID.
+      parameters:
+        - name: bmi-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique ID of the BMI record.
+      responses:
+        '200':
+          description: Details of the BMI record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BMI'
+    delete:
+      summary: Delete a BMI record by ID
+      description: Remove a specific BMI record by its ID.
+      parameters:
+        - name: bmi-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique ID of the BMI record.
+      responses:
+        '204':
+          description: BMI record deleted successfully
+
+  /api/bmi/users/{user-id}:
+    get:
+      summary: Get BMI records by user ID
+      description: Retrieve all BMI records associated with a specific user.
+      parameters:
+        - name: user-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique ID of the user.
+      responses:
+        '200':
+          description: A list of BMI records for the user
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BMI'
+
+components:
+  schemas:
+    User:
+      type: object
+      required:
+        - id
+        - name
+        - email
+      properties:
+        id:
+          type: integer
+          description: The unique ID of the user.
+        name:
+          type: string
+          description: The name of the user.
+        email:
+          type: string
+          description: The email address of the user.
+    Activity:
+      type: object
+      required:
+        - id
+        - userId
+        - name
+        - duration
+      properties:
+        id:
+          type: integer
+          description: The unique ID of the activity.
+        userId:
+          type: integer
+          description: The ID of the user associated with the activity.
+        name:
+          type: string
+          description: The name of the activity.
+        duration:
+          type: string
+          description: The duration of the activity in minutes or hours.
+
+    WaterIntake:
+      type: object
+      required:
+        - id
+        - userId
+        - date
+        - quantity
+      properties:
+        id:
+          type: integer
+          description: The unique ID of the water intake record.
+        userId:
+          type: integer
+          description: The ID of the user associated with the record.
+        date:
+          type: string
+          format: date
+          description: The date of the water intake.
+        quantity:
+          type: integer
+          description: The quantity of water consumed in milliliters.
+
+    HealthTip:
+      type: object
+      required:
+        - id
+        - title
+        - description
+        - date
+      properties:
+        id:
+          type: integer
+          description: The unique ID of the health tip.
+        title:
+          type: string
+          description: The title of the health tip.
+        description:
+          type: string
+          description: Detailed description of the health tip.
+        date:
+          type: string
+          format: date
+          description: The date the health tip was added or last updated.
+
+
+    SleepRecord:
+      type: object
+      required:
+        - id
+        - userId
+        - date
+        - hoursSlept
+      properties:
+        id:
+          type: integer
+          description: The unique ID of the sleep record.
+        userId:
+          type: integer
+          description: The ID of the user associated with the sleep record.
+        date:
+          type: string
+          format: date
+          description: The date the sleep record was created or last updated.
+        hoursSlept:
+          type: number
+          format: float
+          description: The number of hours the user slept on that date.
+
+
+    BMI:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique ID of the BMI record.
+        userId:
+          type: integer
+          description: The ID of the user associated with the BMI record.
+        height:
+          type: number
+          format: float
+          description: Height of the user in meters.
+        weight:
+          type: number
+          format: float
+          description: Weight of the user in kilograms.
+        bmiValue:
+          type: number
+          format: float
+          description: Calculated BMI value.
+        category:
+          type: string
+          description: BMI category (e.g., Underweight, Normal, Overweight, Obese).
+        date:
+          type: string
+          format: date
+          description: The date the BMI record was created.
+
+    BMIRequest:
+      type: object
+      required:
+        - height
+        - weight
+        - userId
+      properties:
+        height:
+          type: number
+          format: float
+          description: Height of the user in meters.
+        weight:
+          type: number
+          format: float
+          description: Weight of the user in kilograms.
+        userId:
+          type: integer
+          description: The ID of the user for whom the BMI is being calculated.

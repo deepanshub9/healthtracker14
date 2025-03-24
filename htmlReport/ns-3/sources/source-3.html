@@ -1,0 +1,254 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > HealthTipController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">ie.setu.controllers</a>
+</div>
+
+<h1>Coverage Summary for Class: HealthTipController (ie.setu.controllers)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">HealthTipController</td>
+<td class="coverageStat">
+  <span class="percent">
+    14.3%
+  </span>
+  <span class="absValue">
+    (1/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    4.2%
+  </span>
+  <span class="absValue">
+    (1/24)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">HealthTipController$addhealthTip$$inlined$jsonToObject$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">HealthTipController$addHealthTip$$inlined$readValue$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+  <tr>
+    <td class="name">HealthTipController$updateHealthTip$$inlined$readValue$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    10%
+  </span>
+  <span class="absValue">
+    (1/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    3.7%
+  </span>
+  <span class="absValue">
+    (1/27)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package ie.setu.controllers
+&nbsp;
+&nbsp;import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+&nbsp;import com.fasterxml.jackson.module.kotlin.readValue
+&nbsp;import ie.setu.domain.repository.HealthTipDAO
+&nbsp;import ie.setu.domain.HealthTip
+&nbsp;import ie.setu.utils.jsonToObject
+&nbsp;import io.javalin.http.Context
+&nbsp;
+&nbsp;object HealthTipController {
+<b class="fc">&nbsp;    private val healthTipDAO = HealthTipDAO()</b>
+&nbsp;
+&nbsp;    fun addhealthTip(ctx: Context) {
+<b class="nc">&nbsp;        val healthTip: HealthTip = jsonToObject(ctx.body())</b>
+<b class="nc">&nbsp;        val id = healthTipDAO.addHealthTip(healthTip)</b>
+<b class="nc">&nbsp;        if (id != null) {</b>
+&nbsp;
+<b class="nc">&nbsp;            ctx.json(healthTip)</b>
+<b class="nc">&nbsp;            ctx.status(201)</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    fun getAllHealthTip(ctx: Context) {
+<b class="nc">&nbsp;        ctx.json(healthTipDAO.getAllHealthTips())</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    fun getHealthTipById(ctx: Context) {
+<b class="nc">&nbsp;        val act = healthTipDAO.getHealthTipbyId(ctx.pathParam(&quot;hth-id&quot;).toInt())</b>
+<b class="nc">&nbsp;        if (act != null) {</b>
+<b class="nc">&nbsp;            ctx.json(act)</b>
+<b class="nc">&nbsp;            ctx.status(200)</b>
+&nbsp;        } else {
+<b class="nc">&nbsp;            ctx.status(404)</b>
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    fun addHealthTip(ctx: Context) {
+<b class="nc">&nbsp;        val mapper = jacksonObjectMapper()</b>
+<b class="nc">&nbsp;        val healthTip = mapper.readValue&lt;HealthTip&gt;(ctx.body())</b>
+<b class="nc">&nbsp;        healthTipDAO.save(healthTip)</b>
+<b class="nc">&nbsp;        ctx.json(healthTip)</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    fun deleteHealthTipById(ctx: Context) {
+<b class="nc">&nbsp;        if (healthTipDAO.deleteHeatlhTipbyId(ctx.pathParam(&quot;hth-id&quot;).toInt()) != 0)</b>
+<b class="nc">&nbsp;            ctx.status(204)</b>
+&nbsp;        else
+<b class="nc">&nbsp;            ctx.status(404)</b>
+<b class="nc">&nbsp;</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    fun updateHealthTip(ctx: Context) {
+<b class="nc">&nbsp;        val healthTip = healthTipDAO.getHealthTipbyId(ctx.pathParam(&quot;hth-id&quot;).toInt())</b>
+<b class="nc">&nbsp;        if (healthTip != null) {</b>
+<b class="nc">&nbsp;            val mapper = jacksonObjectMapper()</b>
+<b class="nc">&nbsp;            val updatedHealthTip = mapper.readValue&lt;HealthTip&gt;(ctx.body())</b>
+<b class="nc">&nbsp;            ctx.json(healthTipDAO.updateHealthTip(healthTip.id, updatedHealthTip))</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-12-29 00:16</div>
+</div>
+</body>
+</html>
