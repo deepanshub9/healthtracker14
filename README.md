@@ -51,7 +51,7 @@ The application backend built with:
 
 
 
-The server is configured to start local on The application will be accessible at http://localhost:7001 with API context.
+The server is configured to start local on The application will be accessible at http://localhost:8001 with API context.
 
 Domain: https://health-tracker-rest-production-6ae2.up.railway.app/
 
