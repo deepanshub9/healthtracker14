@@ -181,7 +181,7 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
-            <version>5.9.0</version>
+            <version>RELEASE</version>
             <scope>compile</scope>
         </dependency>
         <!-- adding selenium -->
@@ -318,12 +318,7 @@
                         <goals>
                             <goal>report</goal>
                         </goals>
-                        <configuration>
-                            <outputDirectory>${project.build.directory}/site/jacoco</outputDirectory>
-                            <formats>
-                                <format>xml</format>
-                            </formats>
-                        </configuration>
+
                     </execution>
                 </executions>
             </plugin>
