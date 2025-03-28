@@ -47,7 +47,7 @@
       </div>
       <div class="container-fluid py-2 " v-if="user">
         <div class="d-flex flex-row flex-nowrap">
-          <a :href="`/users/${user.id}/activities`" class="card card-body us-btn1" style="margin-right: 15px; cursor: pointer">User Activities</a>
+          <a :href="`/users/${user.id}/activities`" class="card card-body us-btn1" style="margin-right: 15px; cursor: pointer">Activities</a>
           <a :href="`/users/${user.id}/sleep`" class="card card-body us-btn1" style="margin-right: 15px; cursor: pointer">User Sleep</a>
           <a :href="`/users/${user.id}/bmi`" class="card card-body us-btn1" style="margin-right: 15px; cursor: pointer">User BMI</a>
         </div>
