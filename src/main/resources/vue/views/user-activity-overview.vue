@@ -5,7 +5,7 @@
       <div class="card-header">
         <div class="row">
           <h3 class="col-6">
-            Activities
+            Users Activities
           </h3>
           <div class="col" align="right">
             <button rel="tooltip" title="Add"
