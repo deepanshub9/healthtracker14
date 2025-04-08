@@ -1,6 +1,6 @@
 <template id="user-water">
   <app-layout>
-    <h4>Water Intake Tracker</h4>
+    <h4>Drinking Tracker</h4>
     <br>
     <div class="chart-container"
          style="position: relative; height:40vh; width:85vw; border: 1px solid lightgrey; padding: 25px">
