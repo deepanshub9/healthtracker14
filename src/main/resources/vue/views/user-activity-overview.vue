@@ -36,10 +36,10 @@
           <div class="form-group">
             <label for="activity">Activity</label>
             <select class="form-select" id="activity" v-model="formData.description">
-              <option selected value="Walking">Walking</option>
-              <option value="Cycling">Cycling</option>
-              <option value="Running">Running</option>
-              <option value="Swimming">Swimming</option>
+              <option selected value="Walking">Walk</option>
+              <option value="Cycling">Cycle</option>
+              <option value="Running">Run</option>
+              <option value="Swimming">Swim</option>
             </select>
           </div>
 
