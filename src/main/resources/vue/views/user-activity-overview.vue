@@ -48,13 +48,13 @@
             <div class="form-group col-md-4" style="padding: 5px 0px;">
               <label for="inputTime">Duration</label>
               <input type="text" class="form-control" v-model="formData.duration" id="inputTime"
-                     placeholder="In minutes...">
+                     placeholder="In minutes">
             </div>
 
             <div class="form-group col-md-4" style="padding: 5px 0px 15px 0px;">
               <label for="inputCal">Calories</label>
               <input type="text" class="form-control" id="inputCal" v-model="formData.calories"
-                     placeholder="Estimated calories burned...">
+                     placeholder="Estimated calories burned">
             </div>
           </div>
 
