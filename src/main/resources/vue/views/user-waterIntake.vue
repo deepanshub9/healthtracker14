@@ -7,7 +7,7 @@
       <canvas id="myChart"></canvas>
     </div>
     <br>
-    <p v-if="water.length === 0">No Data Found! Add your water intake now to track health status</p>
+    <p v-if="water.length === 0">No Data Found! Add your water intake..</p>
     <br>
     <div class="card bg-light mb-3">
       <div class="card-header">
