@@ -31,7 +31,7 @@
             </div>
             <div class="col-md-4 mb-3 calbmi">
               <button type="button" @click="calculateBmi()" class="btn btn-primary">
-                <i class="fas fa-calculator"></i> Calculate BMI
+                <i class="fas fa-calculator"></i> BMI Calculate
               </button>
             </div>
           </div>
