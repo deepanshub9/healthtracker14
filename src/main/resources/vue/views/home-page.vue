@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col">
         <div class="card">
-          <h5 class="card-header">Registered Users</h5>
+          <h5 class="card-header">Registered People</h5>
           <div class="card-body">
             <h5 class="card-title">{{users.length}} users</h5>
             <a href="/users" class="btn btn-primary">More Details...</a>
