@@ -37,7 +37,7 @@
                 <div class="form-group">
                   <label for="inpSleep">Sleep Duration(Hour)</label>
                   <input type="text" class="form-control" id="inpSleep" v-model="formData.duration"
-                         placeholder="Enter your sleephr...">
+                         placeholder="Enter your sleep hours">
                 </div>
               </form>
             </div>
