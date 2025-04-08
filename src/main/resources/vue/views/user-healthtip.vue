@@ -11,7 +11,7 @@
                 class="btn btn-info btn-primary"
                 title="Refresh"
                 @click="fetchRandomTip">
-          <i class="fa fa-refresh me-2" aria-hidden="true"></i>Refresh
+          <i class="fa fa-refresh me-2" aria-hidden="true"></i>Click to see new Health Tip..
         </button>
       </div>
     </div>
